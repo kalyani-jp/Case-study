@@ -1,13 +1,14 @@
 package com.homeloanapp.services;
 
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homeloanapp.repositories.IHomeLoanAgreementRepository;
 import com.homeloanapp.entity.LoanAgreement;
+//import com.homeloanapp.exception.InvalidId;
 import com.homeloanapp.exception.InvalidLoanAgreementException;
 
 @Service
@@ -38,7 +39,7 @@ public class LoanAgreementService implements ILoanAgreementService{
 
 	@Override
 	public LoanAgreement retriveLoanAgreementById(long loanAgreementId)throws InvalidLoanAgreementException {
-		return loanAgreementRepository.findByLoanAgreementId(loanAgreementId).orElseThrow(() -> new InvalidLoanAgreementException("Loan Agreement Not Found!"));
+		return  loanAgreementRepository.findByLoanAgreementId(loanAgreementId).orElseThrow(() -> new InvalidLoanAgreementException("Loan Agreement Not Found!"));
 	}
 
 	@Override
