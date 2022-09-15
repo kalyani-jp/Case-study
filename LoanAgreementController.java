@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;  
 
 import com.homeloanapp.entity.LoanAgreement;
+import com.homeloanapp.exception.InvalidLoanAgreementException;
 import com.homeloanapp.services.LoanAgreementService;
 
 @RestController
@@ -25,15 +26,16 @@ public class LoanAgreementController {
 	}  
 	
 	@GetMapping("/loanAgreements/{loanAgreementid}")  
-	private LoanAgreement retriveLoanAgreementById(@PathVariable("loanAgreementid") long loanAgreementid)   
+	private LoanAgreement retriveLoanAgreementById(@PathVariable("loanAgreementid") long loanAgreementid) throws InvalidLoanAgreementException   
 	{  
 	return loanAgreementService.retriveLoanAgreementById(loanAgreementid); 
 	} 
 	
 	@DeleteMapping("/loanAgreements/{loanAgreementid}")  
-	private void deleteLoanAgreement(@PathVariable("loanAgreementid") long loanAgreementid)   
+	private void deleteLoanAgreement(@PathVariable("loanAgreementid") long loanAgreementid) throws InvalidLoanAgreementException   
 	{  
-		loanAgreementService.deleteLoanAgreement(loanAgreementid);  
+			loanAgreementService.deleteLoanAgreement(loanAgreementid);
+			
 	}  
 	
 	@PostMapping("/loanAgreements")  
@@ -44,9 +46,9 @@ public class LoanAgreementController {
 	} 
 	
 	@PutMapping("/loanAgreements")  
-	private LoanAgreement updateLoanAgreement(@RequestBody LoanAgreement loanAgreement, long loanAgreementid)   
+	private LoanAgreement updateLoanAgreement(@RequestBody LoanAgreement loanAgreement, long loanAgreementid) throws InvalidLoanAgreementException   
 	{  
-	loanAgreementService.updateLoanAgreement(loanAgreementid, loanAgreement);  
+		loanAgreementService.updateLoanAgreement(loanAgreementid, loanAgreement); 
 	return loanAgreement ;  
 	}  
 
